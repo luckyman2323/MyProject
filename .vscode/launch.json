@@ -9,7 +9,7 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "D:/Users/go/src/myproject"
+            "program": "/home/centos/myproject"
         }
     ]
 }
