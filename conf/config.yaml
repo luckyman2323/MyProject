@@ -1,0 +1,41 @@
+
+# opengauss connect configuration
+opengauss:
+  path: '192.168.10.27:5432'
+  dbname: 'blkboard'
+  username: '5vCTWIvZ0CXcWOA6L7yf0g=='    #test
+  password: 'RTgVJJt7fBYmqQCjJhwVbA=='    #test@666
+  maxIdleConns: 10
+  maxOpenConns: 100
+  # 连接超时时间，建议与opengauss的session_timeout设置为相同，单位：分钟
+  connMaxLifetime: 10
+  # gorm 日志  1:Silent, 2:Error, 3:Warn, 4:Info
+  logLevel: 2
+
+# mysql connect configuration
+mysql:
+  path: '192.168.11.194:3306'
+  dbname: 'blkboard'
+  username: '7ISHApR6lJb3YXY3RFoVaw=='
+  password: '7ISHApR6lJb3YXY3RFoVaw=='
+  maxIdleConns: 10
+  maxOpenConns: 100
+  # gorm 日志  1:Silent, 2:Error, 3:Warn, 4:Info
+  logLevel: 2
+  
+logger:
+  # 日志级别: debug/info/warning/error
+  loglevel: debug
+  # 日志文件夹路径
+  logdirpath: deploy/logs/blkboard
+  # 日志文件名（代码会自动添加.log后缀，此处无需添加）
+  logfilename: blkboard
+  # 日志文件切割的大小判断条件，如果文件大小超过logmaxsize，则文件切分，默认为10M
+  logmaxsize: 1e9
+  # 日志最多保存天数，默认值为7，0表示永远保存不会删除
+  logstorageday: 7
+
+# 127.0.0.1:8888、localhost、:3333
+port: 9090
+# 使用的数据库类型 opengauss\mysql
+dbType: mysql
