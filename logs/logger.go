@@ -6,7 +6,7 @@ import (
 
 	"myproject/conf"
 
-	"github.com/astaxie/beego/logs"
+	"github.com/beego/beego/v2/core/logs"
 )
 
 var Logger *LoggerProvider
@@ -27,12 +27,20 @@ func InitLogger() {
 	Logger.BeeLogger = logs.GetBeeLogger()
 
 	logConf := conf.Config.Logger
-	_ = Logger.SetLogger(logs.AdapterConsole)
 
+	// log format
+	// logFormatter := &logs.PatternLogFormatter{
+	// 	Pattern:    "%F:%n|%w%t>> %m",
+	// 	WhenFormat: "2006-01-02",
+	// }
+	// logs.RegisterFormatter("pattern", logFormatter)
+	// logs.SetGlobalFormatter("pattern")
+
+	_ = logs.SetLogger(logs.AdapterConsole)
 	// 输出文件名和行号
 	logs.EnableFuncCallDepth(true)
 	// 直接调用的层级, 默认是 2
-	logs.SetLogFuncCallDepth(3)
+	logs.SetLogFuncCallDepth(2)
 	// 异步输出日志 允许设置缓冲 chan 的大小
 	logs.Async(1e3)
 	// 设置日志等级
@@ -50,6 +58,7 @@ func InitLogger() {
 		configMap["maxdays"] = logConf.LogStorageDay
 	}
 	configMap["maxsize"] = logConf.LogMaxSize
+	configMap["perm"] = "0777"
 
 	confByte, err := json.Marshal(configMap)
 	if err != nil {

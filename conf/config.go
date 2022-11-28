@@ -14,9 +14,8 @@ var Config ConfigStruct
 
 var configDir = "./conf/config.yaml"
 
-func initConfig() {
+func init() {
 	var err error
-
 	_, err = os.Lstat(configDir)
 	if os.IsNotExist(err) {
 		dir, _ := path.Split(configDir)
